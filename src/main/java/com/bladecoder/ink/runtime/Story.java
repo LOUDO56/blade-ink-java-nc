@@ -1606,7 +1606,16 @@ public class Story implements VariablesState.VariableChanged {
                 return true;
             } else {
                 state.setDivertedPointer(currentDivert.getTargetPointer());
-                state.setCurrentKnot(currentDivert.getTargetPathString());
+                String currentKnot = currentDivert.getTargetPath().toString();
+                String currentStitch = null;
+                String[] splitKnot = currentKnot.split("\\.");
+                if (splitKnot.length > 1) {
+                    currentKnot = splitKnot[0];
+                    currentStitch = splitKnot[1];
+                    state.setCurrentKnotStitch(currentKnot + "." + currentStitch);
+                }
+                state.setCurrentKnot(currentKnot);
+                state.setCurrentStitch(currentStitch);
             }
 
             if (currentDivert.getPushesToStack()) {

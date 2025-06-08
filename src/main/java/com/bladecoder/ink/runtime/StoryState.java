@@ -55,6 +55,8 @@ public class StoryState {
     private HashMap<String, Integer> visitCounts;
     private String currentText;
     private String currentKnot;
+    private String currentStitch;
+    private String currentKnotStitch;
 
     private boolean outputStreamTextDirty = true;
     private boolean outputStreamTagsDirty = true;
@@ -181,6 +183,9 @@ public class StoryState {
         copy.currentTurnIndex = currentTurnIndex;
         copy.storySeed = storySeed;
         copy.previousRandom = previousRandom;
+        copy.currentKnot = currentKnot;
+        copy.currentStitch = currentStitch;
+        copy.currentKnotStitch = currentKnotStitch;
 
         copy.setDidSafeExit(didSafeExit);
 
@@ -350,8 +355,24 @@ public class StoryState {
         return currentKnot;
     }
 
+    public String getCurrentStitch() {
+        return currentStitch;
+    }
+
+    public String getCurrentKnotStitch() {
+        return currentKnotStitch;
+    }
+
     public void setCurrentKnot(String currentKnot) {
         this.currentKnot = currentKnot;
+    }
+
+    public void setCurrentStitch(String currentStitch) {
+        this.currentStitch = currentStitch;
+    }
+
+    public void setCurrentKnotStitch(String currentKnotStitch) {
+        this.currentKnotStitch = currentKnotStitch;
     }
 
     Pointer getCurrentPointer() {
