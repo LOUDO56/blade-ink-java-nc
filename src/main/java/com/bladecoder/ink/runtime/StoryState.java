@@ -54,6 +54,7 @@ public class StoryState {
     private VariablesState variablesState;
     private HashMap<String, Integer> visitCounts;
     private String currentText;
+    private String currentKnot;
 
     private boolean outputStreamTextDirty = true;
     private boolean outputStreamTagsDirty = true;
@@ -331,6 +332,26 @@ public class StoryState {
         Pointer pointer = getPreviousPointer();
         if (pointer.isNull()) return null;
         else return pointer.getPath().toString();
+    }
+
+    /**
+     * String representation of the location where the story currently is.
+     */
+    public String currentPathString() {
+        Pointer pointer = getCurrentPointer();
+        if (pointer.isNull()) return null;
+        else return pointer.getPath().toString();
+    }
+
+    /**
+     * Get the current knot of the story, in order to handle change between a game scene system.
+     */
+    public String getCurrentKnot() {
+        return currentKnot;
+    }
+
+    public void setCurrentKnot(String currentKnot) {
+        this.currentKnot = currentKnot;
     }
 
     Pointer getCurrentPointer() {

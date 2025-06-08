@@ -1606,6 +1606,7 @@ public class Story implements VariablesState.VariableChanged {
                 return true;
             } else {
                 state.setDivertedPointer(currentDivert.getTargetPointer());
+                state.setCurrentKnot(currentDivert.getTargetPathString());
             }
 
             if (currentDivert.getPushesToStack()) {
