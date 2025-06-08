@@ -344,7 +344,7 @@ public class StoryState {
     }
 
     /**
-     * Get the current knot of the story, in order to handle change between a game scene system.
+     * Get the current knot in the story to manage changes between scenes in a game.
      */
     public String getCurrentKnot() {
         return currentKnot;
