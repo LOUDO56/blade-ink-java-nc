@@ -363,16 +363,20 @@ public class StoryState {
         return currentKnotStitch;
     }
 
-    public void setCurrentKnot(String currentKnot) {
+    void setCurrentKnot(String currentKnot) {
         this.currentKnot = currentKnot;
     }
 
-    public void setCurrentStitch(String currentStitch) {
+    void setCurrentStitch(String currentStitch) {
         this.currentStitch = currentStitch;
     }
 
-    public void setCurrentKnotStitch(String currentKnotStitch) {
+    void setCurrentKnotStitch(String currentKnotStitch) {
         this.currentKnotStitch = currentKnotStitch;
+    }
+
+    public HashMap<String, Integer> getVisitCounts() {
+        return visitCounts;
     }
 
     Pointer getCurrentPointer() {
