@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 /**
  * All story state information is included in the StoryState class, including
@@ -377,6 +378,14 @@ public class StoryState {
 
     public HashMap<String, Integer> getVisitCounts() {
         return visitCounts;
+    }
+
+    public List<String> getVisitedKnots() {
+        return new ArrayList<>(this.visitCounts.keySet());
+    }
+
+    public String getPreviousKnot() {
+        return this.visitCounts.keySet().stream().findFirst().get();
     }
 
     Pointer getCurrentPointer() {
