@@ -2,7 +2,7 @@ plugins {
     id 'java-library'
     id 'maven-publish'
     id 'signing'
-    id "com.diffplug.spotless" version "6.12.0"
+    id "com.diffplug.spotless" version "7.2.1"
 }
 
 group = 'com.bladecoder.ink'
@@ -19,7 +19,7 @@ dependencies {
     testImplementation 'junit:junit:4.13'
 }
 
-if (hasProperty("ci") && !version.endsWith("-SNAPSHOT")) {
+if (!hasProperty("release") && !version.endsWith("-SNAPSHOT")) {
     version += "-SNAPSHOT"
 }
 
@@ -121,14 +121,20 @@ publishing {
     }
     repositories {
         maven {
-            def releasesRepoUrl = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
-            def snapshotsRepoUrl = "https://oss.sonatype.org/content/repositories/snapshots/"
+            def releasesRepoUrl = "https://ossrh-staging-api.central.sonatype.com/service/local/staging/deploy/maven2/"
+            def snapshotsRepoUrl = "https://central.sonatype.com/repository/maven-snapshots/"
             url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
             credentials {
-                username findProperty("sonatypeUsername")
-                password findProperty("sonatypePassword")
+                username project.hasProperty('NEXUS_USERNAME') ? NEXUS_USERNAME : "$System.env.NEXUS_USERNAME"
+                password project.hasProperty('NEXUS_PASSWORD') ? NEXUS_PASSWORD : "$System.env.NEXUS_PASSWORD"
             }
         }
+    }
+}
+
+signing {
+    if (!version.endsWith('SNAPSHOT')) {
+        sign publishing.publications.mavenJava
     }
 }
 
