@@ -696,6 +696,11 @@ public class Story implements VariablesState.VariableChanged {
             }
         }
 
+        String[] paths = path.split("\\.");
+        state.setCurrentKnot(paths[0]);
+        if (paths.length > 1) {
+            state.setCurrentKnot(paths[1]);
+        }
         state.passArgumentsToEvaluationStack(arguments);
         choosePath(new Path(path));
     }
